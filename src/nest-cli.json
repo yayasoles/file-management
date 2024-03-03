@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "your-library": {
+      "type": "library",
+      "root": "libs/your-library",
+      "entryFile": "index",
+      "sourceRoot": "libs/your-library/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/your-library/tsconfig.lib.json"
+      }
+    }
+  },
+  "compilerOptions": {
+    "webpack": true
+  }
+}
