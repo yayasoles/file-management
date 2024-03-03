@@ -2,7 +2,7 @@
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ApiTags } from '@nestjs/swagger';
 import { Module } from '@nestjs/common';
-import { BpmModule } from './file/bpm.module';
+import { FileModule } from './file/bpm.module';
 @ApiTags('Users')
 @Module({
   imports: [
@@ -21,7 +21,7 @@ import { BpmModule } from './file/bpm.module';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
-    BpmModule,
+    FileModule,
   ],
   controllers: [],
  
