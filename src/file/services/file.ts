@@ -17,14 +17,14 @@ export class FileService {
     @InjectRepository(FolderEntity)
     private readonly folderResponsitory: Repository<FolderEntity>,
   ) {}
-  async upload(file: Express.Multer.File, filePath: string) {
+  async upload(file: Express.Multer.File, fileId: string) {
     const fieldname = file.fieldname;
     const originalname = file.originalname;
     const mimetype = file.mimetype.split('/');
     const fileEntity = new FileEntity();
     fileEntity.name = fieldname;
     fileEntity.type = mimetype[0];
-    const path = fieldname + filePath;
+    const path = fieldname + fileId;
     fileEntity.fileId = path;
     fileEntity.size = file?.size.toString();
     const result = await this.fileResponsitory.insert(fileEntity);

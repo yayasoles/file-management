@@ -4,6 +4,7 @@ import {
   Get,
   Param,
   Post,
+  Req,
   Res,
   UploadedFile,
   UseInterceptors,
@@ -12,7 +13,7 @@ import { ApiExtraModels, ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FileService } from '../services/file';
 import { multerConfig } from './multer';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 
 @Controller('Files')
 // @ApiTags('business-processes')
@@ -26,9 +27,11 @@ export class FileController {
   }
   @Post('upload')
   @UseInterceptors(FileInterceptor('file', multerConfig))
-  async uploadFile(@UploadedFile() file: Express.Multer.File) {
-    const res = await this.fileService.upload(file, file.filename);
-    return res
+  async uploadFile(@UploadedFile() file: Express.Multer.File, @Req() req:Request) {
+    console.log(req.body)
+    const fileId=req.body.result
+    const res = await this.fileService.upload(file, fileId);
+    return {fileId:fileId}
   }
   @Get('get-file/:fileId')
   async getFiles(@Param('fileId')fileId:string,@Res() res:Response) {
