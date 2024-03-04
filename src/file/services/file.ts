@@ -61,10 +61,7 @@ export class FileService {
     }
   }
   async getAllFiles(path:string) {
-    const folderPath = `./${path}`
-    if (/[/\\?]/.test(path)) {
-      throw new NotFoundException('Invalid path');
-    }
+    const folderPath = `./uploads/${path}`
     try {
       const files = await fs.promises.readdir(folderPath);
       console.log(files)

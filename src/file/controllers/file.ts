@@ -4,6 +4,7 @@ import {
   Get,
   Param,
   Post,
+  Query,
   Req,
   Res,
   UploadedFile,
@@ -39,6 +40,10 @@ export class FileController {
   }
   @Get('get-all-files/:path')
   async getAllFiles(@Param('path')path:string) {
+    return await this.fileService.getAllFiles(path);
+  }
+  @Get('get-all-files')
+  async getAllFile(@Query('path')path:string) {
     return await this.fileService.getAllFiles(path);
   }
 }
