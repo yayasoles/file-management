@@ -57,7 +57,10 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
+to upload file : http://localhost:3002/api/Files/upload (Mehod post on post man use form data if you have specific folder use the path attribute )
+to create folder : http://localhost:3002/api/Files/upload?path=folderName
+to Run getfile : http://localhost:3002/api/Files/get-file/1709477118606-438528214.png
+to get all file names in the folder : http://localhost:3002/api/Files/get-all-files/uploads
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
