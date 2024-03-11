@@ -17,7 +17,7 @@ import { multerConfig } from './multer';
 import { Request, Response } from 'express';
 
 @Controller('Files')
-// @ApiTags('Files')
+@ApiTags('Files')
 export class FileController {
   constructor(private readonly fileService: FileService) {}
 

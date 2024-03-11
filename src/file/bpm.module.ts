@@ -3,8 +3,8 @@ import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { FileService } from './services/file';
 import { FileController } from './controllers/file';
-import { FileEntity } from './entities/file.entity';
-import { FolderEntity } from './entities/folder.entity';
+import { FileEntity } from 'src/entities/file.entity';
+import { FolderEntity } from 'src/entities/folder.entity';
 @Module({
   imports: [
     TypeOrmModule.forFeature([

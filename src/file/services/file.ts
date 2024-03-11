@@ -4,11 +4,11 @@
 import { HttpException, Injectable, NotFoundException, Res } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { FileEntity } from '../entities/file.entity';
 import * as fs from 'fs';
 import * as path from 'path';
-import { FolderEntity } from '../entities/folder.entity';
 import { Response } from 'express';
+import { FileEntity } from 'src/entities/file.entity';
+import { FolderEntity } from 'src/entities/folder.entity';
 @Injectable()
 export class FileService {
   constructor(

@@ -3,6 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ApiTags } from '@nestjs/swagger';
 import { Module } from '@nestjs/common';
 import { FileModule } from './file/bpm.module';
+import { FormioModule } from './formio/formio.module';
+import { HttpModule } from '@nestjs/axios';
 @ApiTags('Users')
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { FileModule } from './file/bpm.module';
       synchronize: true,
     }),
     FileModule,
+    FormioModule,
+    HttpModule
   ],
   controllers: [],
  

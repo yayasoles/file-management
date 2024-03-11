@@ -9,9 +9,14 @@ import {
   SwaggerCustomOptions,
   SwaggerModule,
 } from '@nestjs/swagger';
-const port=3002;
+import axios from 'axios';
+import { AxiosInterceptor } from './formio/interceptors/axios.interceptor';
+const port=9000;
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const axiosInstance = axios.create({
+    timeout: 120000, // Specify the timeout value in milliseconds (e.g., 5 seconds)
+  });
   // swagger config
   app.setGlobalPrefix('api');
   const customOptions: SwaggerCustomOptions = {
@@ -19,17 +24,17 @@ async function bootstrap() {
       persistAuthorization: false,
       docExpansion: 'none',
     },
-    customSiteTitle: 'IFHCRS',
+    customSiteTitle: 'File',
   };
   const config = new DocumentBuilder()
     .addBearerAuth()
-    .setTitle('LM APIs')
-    .setDescription('LM API Documentation')
+    .setTitle('File APIs')
+    .setDescription('File API Documentation')
     .setVersion('1.0')
     .setContact(
-      'Tria Trading PLc',
-      'http://peragosystems.com/',
-      'perago@info.com',
+      'Noka Trading PLc',
+      'http://Noka.com/',
+      'yayasoles@info.com',
     )
     .build();
   const document = SwaggerModule.createDocument(app, config, {
@@ -44,6 +49,7 @@ async function bootstrap() {
   });
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
+  app.useGlobalInterceptors(new AxiosInterceptor(axiosInstance));
   await app.listen(port).then(() => console.log(`app is running at port ${port}`));
 }
 bootstrap();
